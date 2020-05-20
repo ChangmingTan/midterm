@@ -16,7 +16,23 @@ $f3->route('GET /', function () {
 });
 
 //Survey route
-$f3->route('GET /survey', function () {
+$f3->route('GET|POST /survey', function ($f3) {
+
+    $options = array("This midterm is easy", "I like midterms", "Today is Monday", "I will get 100/100 on this midterm");
+
+    //If the form has been submitted
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        var_dump($_POST);
+
+        //Store the data in the session array
+        $_SESSION['options'] = $_POST['options'];
+
+        //Redirect to Summary page
+        $f3->reroute('');
+    }
+
+    $f3->set('options', $options);
+
     $view = new Template();
     echo $view->render('views/survey.html');
 
