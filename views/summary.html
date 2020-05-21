@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Midterm Survey</title>
+</head>
+<body>
+<div class="container p-5">
+    <h1 class="pb-3">Midterm Survey</h1>
+    <h3>Thank you for taking the survey, {{ @SESSION.name }}</h3>
+    <h4>Your Answers:</h4>
+    <p>{{ implode(@SESSION.options, ", ") }}</p>
+</div>
+</body>
+</html>

@@ -3,6 +3,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//Start a session
+session_start();
+
 //Require the autoload file
 require_once('vendor/autoload.php');
 
@@ -25,10 +28,11 @@ $f3->route('GET|POST /survey', function ($f3) {
         var_dump($_POST);
 
         //Store the data in the session array
+        $_SESSION['name'] = $_POST['name'];
         $_SESSION['options'] = $_POST['options'];
 
         //Redirect to Summary page
-        $f3->reroute('');
+        $f3->reroute('summary');
     }
 
     $f3->set('options', $options);
@@ -36,6 +40,14 @@ $f3->route('GET|POST /survey', function ($f3) {
     $view = new Template();
     echo $view->render('views/survey.html');
 
+});
+
+//Summary route
+$f3->route('GET /summary', function () {
+    $view = new Template();
+    echo $view->render('views/summary.html');
+
+    session_destroy();
 });
 
 

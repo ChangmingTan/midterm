@@ -13,7 +13,7 @@
     <form action="#" method="post">
         <div class="form-inline mb-4">
             <label for="name">Name &nbsp;&nbsp;</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" name="name">
         </div>
 
         <div class="form-group">
@@ -26,8 +26,8 @@
                     <label class="form-check-label" for="{{ @option }}">{{ @option }}</label>
                 </div>
             </repeat>
-
         </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
