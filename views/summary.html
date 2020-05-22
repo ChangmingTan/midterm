@@ -11,7 +11,7 @@
 
     <check if="{{ isset(@SESSION.option) }}">
         <h4>Your Answers:</h4>
-        <p>{{ implode(@SESSION.option, ", ") }}</p>
+        <p>{{ @SESSION.option }}</p>
     </check>
 </div>
 </body>
