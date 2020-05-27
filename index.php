@@ -34,11 +34,24 @@ $f3->route('GET|POST /survey', function ($f3) {
             //Set an error variable in the F3 hive
             $f3->set('errors["name"]', "Invalid name");
         }
-        if (!validOptions($_POST['option'])) {
 
+        $options = $_POST['option'];
+        if (isset($options)) {
+            foreach ($options as $option) {
+
+                $f3->set('selectedOption', $option);
+
+                if (!validOptions($option)) {
+
+                    //Set an error variable in the F3 hive
+                    $f3->set('errors["option"]', "Invalid option");
+                }
+            }
+        } else {
             //Set an error variable in the F3 hive
             $f3->set('errors["option"]', "Invalid option");
         }
+
         //Data is valid
         if (empty($f3->get('errors'))) {
 
@@ -53,7 +66,7 @@ $f3->route('GET|POST /survey', function ($f3) {
 
     $f3->set('options', getOptions());
     $f3->set('name', $_POST['name']);
-    $f3->set('selectedOption', $_POST['option']);
+
     $view = new Template();
     echo $view->render('views/survey.html');
 
